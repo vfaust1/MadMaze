@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.univ.sae</groupId>
+    <artifactId>labyrinthe</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>SAE Labyrinthe</name>
+    <description>Projet SAE - Générateur et jeu de labyrinthe</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    <junit.version>5.6.2</junit.version>
+        <javafx.version>20.0.2</javafx.version>
+        <!-- Default classifier left empty; profiles will set platform-specific classifier -->
+    <javafx.classifier>win</javafx.classifier>
+    </properties>
+
+    <dependencies>
+        <!-- JUnit 5 (explicit API + engine) pour les tests -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JavaFX modules (UI) - classifier will be set by profile for platform-specific native libs -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+       <!-- Use top-level 'src' as source root so packages like 'main.java.model'
+           (files under src/main/java/model) resolve without moving files. -->
+       <sourceDirectory>src</sourceDirectory>
+       <testSourceDirectory>src/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/ressources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <!-- keep default resources location optional in case it exists -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        
+        <plugins>
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <!-- When using top-level 'src' as sourceDirectory, limit compilation to main/java
+                         so test sources under src/test/java are not compiled in the main compile phase. -->
+                    <includes>
+                        <include>main/java/**/*.java</include>
+                    </includes>
+                    <!-- Exclude controllers and views when you want to compile only the model/core -->
+                    <excludes>
+                        <!--<exclude>main/java/controller/**</exclude>
+                        <exclude>main/java/view/**</exclude> -->
+                        <exclude>test/java/modele/**</exclude>
+                    </excludes> 
+                </configuration>
+            </plugin>
+
+            <!-- Surefire plugin pour exécuter les tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+
+            <!-- Plugin pour créer un JAR exécutable -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>main.java.model.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- JavaFX Maven plugin to run the app easily and to create a jlink image -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>main.java.fr.univlille.iut.sae302.madmaze.view.MainMenuView</mainClass>
+                </configuration>
+                <executions>
+                    <!-- Default run goal: developers can use 'mvn javafx:run' -->
+                    <execution>
+                        <id>run</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <!-- jlink goal: create a self-contained runtime image including JavaFX -->
+                    <execution>
+                        <id>jlink</id>
+                        <goals>
+                            <goal>jlink</goal>
+                        </goals>
+                        <configuration>
+                            <!-- imageName can be adjusted; default target is target/jlink-image -->
+                            <imageName>labyrinthe-runtime</imageName>
+                            <addModules>java.base,javafx.controls,javafx.graphics,javafx.base</addModules>
+                            <launcher>labyrinthe</launcher>
+                            <!-- Optionally strip debug and compress the image for smaller size -->
+                            <stripDebug>true</stripDebug>
+                            <compress>2</compress>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Windows x64 profile (common for dev on Windows) -->
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <javafx.classifier>win</javafx.classifier>
+            </properties>
+        </profile>
+        <!-- macOS and Linux profiles can be added similarly if needed -->
+    </profiles>
+</project>

@@ -1,0 +1,20 @@
+.end-game-win-title {
+    -fx-font-family: "Teko Bold";
+    -fx-font-size: 48px;
+    -fx-text-fill: rgb(243, 212, 84);
+}
+
+.end-game-win-info {
+    -fx-font-family: "Teko SemiBold";
+    -fx-font-size: 32px;
+}
+
+.end-game-win-button {
+    -fx-font-family: "Teko Bold";
+    -fx-font-size: 24px;
+    -fx-background-color: rgba(243, 212, 84);
+    -fx-text-fill: #000a2e;
+    -fx-background-radius: 40;
+    -fx-pref-width: 400px;
+    -fx-pref-height: 75px;
+}

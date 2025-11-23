@@ -1,0 +1,49 @@
+/* --- Polices --- */
+.root {
+    /* Charger la police pour toute la vue */
+    -fx-font-family: "Teko Bold";
+}
+
+/* --- Labels --- */
+.parameter-title {
+    -fx-font-size: 120px;
+    -fx-text-fill: rgb(248, 239, 224);
+}
+
+.parameter-label {
+    -fx-font-size: 35px;
+    -fx-text-fill: rgb(248, 239, 224);
+}
+
+/* --- Boutons --- */
+.parameter-button {
+    -fx-font-size: 30px;
+    -fx-text-fill: rgb(248, 239, 224);
+    -fx-background-radius: 20;
+    -fx-alignment: CENTER;
+    -fx-pref-width: 265px;
+    -fx-pref-height: 70px;
+}
+
+.parameter-button-full {
+    -fx-background-color: rgba(94, 39, 6, 1.0);
+}
+
+.parameter-button-half {
+    -fx-background-color: rgba(94, 39, 6, 0.5);
+}
+
+/* --- Panneau central --- */
+.parameter-panel {
+    -fx-background-color: rgba(94, 39, 6, 0.75);
+    -fx-background-radius: 20;
+    -fx-arc-width: 40;
+    -fx-arc-height: 40;
+}
+
+/* --- Spinners --- */
+.spinner {
+    -fx-pref-width: 120px;
+    -fx-font-family: "Teko Medium";
+    -fx-font-size: 16px;
+}

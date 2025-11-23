@@ -1,0 +1,20 @@
+.end-game-lose-title {
+    -fx-font-family: "Teko Bold";
+    -fx-font-size: 48px;
+    -fx-text-fill: #96501e;
+}
+
+.end-game-lose-info {
+    -fx-font-family: "Teko SemiBold";
+    -fx-font-size: 32px;
+}
+
+.end-game-lose-button {
+    -fx-font-family: "Teko Bold";
+    -fx-font-size: 24px;
+    -fx-background-color: rgba(150, 80, 30);
+    -fx-text-fill: #050e0e;
+    -fx-background-radius: 40;
+    -fx-pref-width: 400px;
+    -fx-pref-height: 75px;
+}

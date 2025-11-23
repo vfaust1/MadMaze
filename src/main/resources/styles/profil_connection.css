@@ -1,0 +1,58 @@
+.profil-connection-root {
+    -fx-background-color: white;
+}
+
+.profil-connection-title {
+    -fx-font-size: 48px;
+    -fx-font-family: "Teko Bold";
+    -fx-text-fill: rgb(243, 201, 55);
+    -fx-effect: dropshadow(gaussian, black, 2, 0.8, 0, 0);
+}
+
+.profil-connection-panel {
+    -fx-background-color: rgba(242, 242, 242, 0.85);
+    -fx-background-radius: 22;
+    -fx-padding: 30px;
+}
+
+.form-label {
+    -fx-font-size: 18px;
+    -fx-font-family: "Teko Bold";
+    -fx-min-width: 140px;
+    -fx-pref-width: 140px;
+    -fx-alignment: center;
+    -fx-text-overrun: clip;
+}
+
+.profile-name-value {
+    -fx-font-size: 24px;
+    -fx-font-family: "Teko Bold";
+    -fx-alignment: center-left;
+}
+
+.form-field {
+    -fx-pref-width: 240px;
+    -fx-max-width: 240px;
+}
+
+.form-row {
+    -fx-alignment: center;
+    -fx-pref-width: 440px;
+}
+
+.error-label {
+    -fx-text-fill: red;
+}
+
+.bottom-button {
+    -fx-background-color: rgba(239, 239, 239, 0.85);
+    -fx-font-family: "Teko Bold";
+    -fx-background-radius: 28;
+    -fx-font-size: 18px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+}
+
+.bottom-button:hover {
+    -fx-background-color: rgba(239, 239, 239, 1.0);
+}

@@ -1,0 +1,14 @@
+.credits-root {
+    -fx-padding: 20px;
+}
+
+.credits-title {
+    -fx-font-size: 36px;
+}
+
+.credits-description {
+    -fx-font-size: 22px;
+    -fx-wrap-text: true;
+    -fx-max-width: 700px;
+    -fx-alignment: center;
+}

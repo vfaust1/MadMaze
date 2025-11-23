@@ -1,0 +1,22 @@
+.styled-button {
+    -fx-background-color: #efefef;
+    -fx-text-fill: #222;
+    -fx-background-color: rgb(72, 195, 115);
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-border-color: transparent;
+    -fx-font-family: "Teko Bold";
+    -fx-font-size: 22px;
+    -fx-opacity: 0.85;
+}
+
+.styled-button:hover {
+    -fx-opacity: 1.0;
+}
+
+.bonus-title {
+    -fx-font-family: "Teko Bold";
+    -fx-font-size: 100px;
+    -fx-text-fill: rgb(243, 201, 55);
+    -fx-effect: dropshadow(gaussian, black, 2, 0.8, 0, 0);
+}
