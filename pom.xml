@@ -123,10 +123,42 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>main.java.model.Main</mainClass>
+                            <mainClass>main.java.fr.univlille.iut.sae302.madmaze.view.MainMenuView</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <!-- Maven Shade Plugin pour créer un JAR exécutable avec toutes les dépendances -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>main.java.fr.univlille.iut.sae302.madmaze.view.MainMenuView</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <finalName>MadMaze-standalone</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <!-- JavaFX Maven plugin to run the app easily and to create a jlink image -->
             <plugin>
